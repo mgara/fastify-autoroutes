@@ -2,7 +2,7 @@ import createError from '@fastify/error'
 import type { FastifyInstance, RouteOptions } from 'fastify'
 import fastifyPlugin from 'fastify-plugin'
 import fs from 'fs'
-import glob from 'glob-promise'
+import { glob } from 'glob';
 import path from 'path'
 import process from 'process'
 
@@ -144,7 +144,7 @@ export default fastifyPlugin<FastifyAutoroutesOptions>(
         .replace('.ts', '')
         .replace('index', '')
         .split('/')
-        .map((part) => part.replace(/{(.+)}/g, ':$1'))
+        .map((part:string) => part.replace(/{(.+)}/g, ':$1'))
         .join('/')
 
       routeName = !routeName ? '/' : `${routePrefix}${routeName}`

@@ -24,6 +24,9 @@ describe('Options', () => {
         url: '/does-not-really-matter',
       },
       (error) => {
+        if (!error) {
+          throw new Error("Expected error to be defined");
+        }
         expect(error.message.startsWith(ERROR_LABEL)).toBeTruthy()
         done()
       }
@@ -64,6 +67,9 @@ describe('Options', () => {
         url: '/does-not-really-matter',
       },
       (error) => {
+        if (!error) {
+          throw new Error("Expected error to be defined");
+        }
         expect(error.message.startsWith(ERROR_LABEL)).toBeTruthy()
         done()
       }

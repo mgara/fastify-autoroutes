@@ -79,6 +79,9 @@ describe('Routes', () => {
         url: '/',
       },
       (err, res) => {
+        if (!res) {
+          throw new Error("Expected response to be defined");
+        }
         expect(err).toBe(null)
         expect(res.payload).toBe('get')
         done()
@@ -105,6 +108,10 @@ describe('Routes', () => {
         url: '/users/foo',
       },
       (err, res) => {
+        if (!res) {
+          throw new Error("Expected response to be defined");
+        }
+
         expect(err).toBe(null)
         expect(res.payload).toBe('get')
         done()
@@ -133,6 +140,9 @@ describe('Routes', () => {
         url: '/users/foo/',
       },
       (err, res) => {
+        if (!res) {
+          throw new Error("Expected res to be defined");
+        }
         expect(err).toBe(null)
         expect(res.payload).toBe('get')
         done()
@@ -162,6 +172,9 @@ describe('Routes', () => {
         url: `/users/${userId}`,
       },
       (err, res) => {
+        if (!res) {
+          throw new Error("Expected res to be defined");
+        }
         expect(err).toBe(null)
         expect(res.payload).toBe(userId)
         done()
@@ -197,6 +210,9 @@ describe('Routes', () => {
             url: `/users/${USERID}`,
           },
           (err, res) => {
+            if (!res) {
+              throw new Error("Expected res to be defined");
+            }
             expect(err).toBe(null)
             expect(JSON.parse(res.payload).USERID).toBe(USERID)
 
@@ -206,6 +222,9 @@ describe('Routes', () => {
                 url: `/users/${USERID}/`,
               },
               (err, res) => {
+                if (!res) {
+                  throw new Error("Expected res to be defined");
+                }
                 expect(err).toBe(null)
                 expect(JSON.parse(res.payload).USERID).toBe(USERID)
                 done()
@@ -241,6 +260,9 @@ describe('Routes', () => {
           url: `/users/${userId}/`,
         },
         (err, res) => {
+          if (!res) {
+            throw new Error("Expected res to be defined");
+          }
           expect(err).toBe(null)
           expect(res.payload).toBe(userId)
           done()
@@ -266,6 +288,9 @@ describe('Routes', () => {
         url: '/',
       },
       (err, res) => {
+        if (!res) {
+          throw new Error("Expected res to be defined");
+        }
         expect(err).toBe(null)
         expect(res.payload).toBe('get')
         done()
@@ -292,6 +317,9 @@ describe('Routes', () => {
           url: '/hello',
         },
         (err, res) => {
+          if (!res) {
+            throw new Error("Expected res to be defined");
+          }
           expect(res.statusCode).toBe(404)
 
           server.inject(
@@ -300,6 +328,9 @@ describe('Routes', () => {
               url: '/.hello',
             },
             (err, res) => {
+              if (!res) {
+                throw new Error("Expected res to be defined");
+              }
               expect(res.statusCode).toBe(404)
 
               done()
@@ -329,6 +360,9 @@ describe('Routes', () => {
           url: '/hello',
         },
         (err, res) => {
+          if (!res) {
+            throw new Error("Expected res to be defined");
+          }
           expect(res.statusCode).toBe(404)
 
           server.inject(
@@ -337,6 +371,9 @@ describe('Routes', () => {
               url: '/_hello',
             },
             (err, res) => {
+              if (!res) {
+                throw new Error("Expected res to be defined");
+              }
               expect(res.statusCode).toBe(404)
               done()
             }
@@ -364,6 +401,9 @@ describe('Routes', () => {
         url: '/someJsRoute',
       },
       (err, res) => {
+        if (!res) {
+          throw new Error("Expected res to be defined");
+        }
         expect(res.statusCode).toBe(404)
 
         server.inject(
@@ -372,6 +412,9 @@ describe('Routes', () => {
             url: '/someTsRoute',
           },
           (err, res) => {
+            if (!res) {
+              throw new Error("Expected res to be defined");
+            }
             expect(res.statusCode).toBe(404)
             done()
           }
@@ -384,7 +427,7 @@ describe('Routes', () => {
     const server = fastify()
 
     const dir = mock('routes', {
-      a: {'status.js': exampleGetRoute, }
+      a: { 'status.js': exampleGetRoute, }
     })
 
     server.register(autoroutes, {
@@ -397,6 +440,9 @@ describe('Routes', () => {
         url: '/a/status',
       },
       (err, res) => {
+        if (!res) {
+          throw new Error("Expected res to be defined");
+        }
         expect(err).toBe(null)
         expect(res.payload).toBe('get')
         done()

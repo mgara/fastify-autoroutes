@@ -39,6 +39,9 @@ describe('Invalid Routes', () => {
         url: '/',
       },
       (err, res) => {
+        if (!err) {
+          throw new Error("Expected error to be defined");
+        }
         expect(err.message.startsWith(ERROR_LABEL)).toBeTruthy()
         done()
       }
@@ -62,6 +65,9 @@ describe('Invalid Routes', () => {
         url: '/',
       },
       (err, res) => {
+        if (!err) {
+          throw new Error("Expected error to be defined");
+      }
         expect(err.message.startsWith(ERROR_LABEL)).toBeTruthy()
         done()
       }
@@ -108,6 +114,9 @@ describe('Invalid Routes', () => {
         url: '/',
       },
       (err, res) => {
+        if (!err) {
+          throw new Error("Expected error to be defined");
+      }
         expect(err.message.startsWith(ERROR_LABEL)).toBeTruthy()
         done()
       }
